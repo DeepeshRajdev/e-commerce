@@ -5,7 +5,8 @@ import { mobile } from '../responsive.js';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-//import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
     right: -3,
@@ -78,15 +79,20 @@ const Right = styled.div`
   justify-content: flex-end;
   ${mobile({ flex: 2, justifyContent: "center" })}
 `;
-
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color:black;
+`;
 const MenuItem = styled.div`
+text-decoration: none;
   font-size: 14px;
   cursor: pointer;
   margin-left: 25px;
+  color: black;
   ${mobile({ fontSize: "12px", marginLeft: "10px" })}
 `;
 const Navbar = () => {
- // const quantity = useSelector(state=>state.cart.quantity)
+  const quantity = useSelector(state=>state.cart.quantity)
   return (
     <Container>
       <Wrapper>
@@ -102,15 +108,19 @@ const Navbar = () => {
           <Logo>PIOR</Logo>
         </Center>
         <Right>
-          <MenuItem>REGISTER</MenuItem>
-          <MenuItem>SIGN IN</MenuItem>
+          <MenuItem><StyledLink to='/register'>REGISTER</StyledLink></MenuItem>
+          <MenuItem><StyledLink to='/login'>SIGN IN</StyledLink></MenuItem>
+         
           <MenuItem>
+          <StyledLink to='/cart'>
           <IconButton aria-label="cart">
-          <StyledBadge badgeContent={0} color="primary">
+          <StyledBadge badgeContent={quantity} color="primary">
           <ShoppingCartOutlinedIcon />
         </StyledBadge>
         </IconButton>
+        </StyledLink>
           </MenuItem>
+          
         </Right>
       </Wrapper>
     </Container>

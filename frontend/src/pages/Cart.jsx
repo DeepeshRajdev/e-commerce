@@ -9,9 +9,7 @@ import { mobile } from "../responsive";
 import StripeCheckout from "react-stripe-checkout";
 import { useEffect, useState } from "react";
 import { userRequest } from "../requestMethods.js";
-import { useHistory } from "react-router-dom";
-
-const KEY = pk_test_51P33fNSFNo22sPcPz9C6kqBqlunAPIYDkoFvxFc7pZKQvQrLUYEgtyUmtcGiRSArK5ybhZ7r0y1os9wbwUh9rfHE00nhWAvGxE;
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div``;
 
@@ -163,8 +161,8 @@ const Button = styled.button`
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const [stripeToken, setStripeToken] = useState(null);
-  const history = useHistory();
-
+  const navigate = useNavigate();
+  const KEY = pk_test_51P33fNSFNo22sPcPz9C6kqBqlunAPIYDkoFvxFc7pZKQvQrLUYEgtyUmtcGiRSArK5ybhZ7r0y1os9wbwUh9rfHE00nhWAvGxE;
   const onToken = (token) => {
     setStripeToken(token);
   };
@@ -176,13 +174,13 @@ const Cart = () => {
           tokenId: stripeToken.id,
           amount: 500,
         });
-        history.push("/success", {
+        navigate("/success", {
           stripeData: res.data,
           products: cart, });
       } catch {}
     };
     stripeToken && makeRequest();
-  }, [stripeToken, cart.total, history]);
+  }, [stripeToken, cart.total, navigate]);
   return (
     <Container>
       <Navbar />
