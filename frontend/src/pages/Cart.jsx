@@ -8,10 +8,10 @@ import Navbar from "../components/Navbar";
 import { mobile } from "../responsive";
 import StripeCheckout from "react-stripe-checkout";
 import { useEffect, useState } from "react";
-import { userRequest } from "../requestMethods";
-import { useHistory } from "react-router";
+import { userRequest } from "../requestMethods.js";
+import { useHistory } from "react-router-dom";
 
-const KEY = process.env.REACT_APP_STRIPE;
+const KEY = pk_test_51P33fNSFNo22sPcPz9C6kqBqlunAPIYDkoFvxFc7pZKQvQrLUYEgtyUmtcGiRSArK5ybhZ7r0y1os9wbwUh9rfHE00nhWAvGxE;
 
 const Container = styled.div``;
 
@@ -250,7 +250,6 @@ const Cart = () => {
             </SummaryItem>
             <StripeCheckout
               name="PIOR Shop"
-              image="https://avatars.githubusercontent.com/u/1486366?v=4"
               billingAddress
               shippingAddress
               description={`Your total is $${cart.total}`}
