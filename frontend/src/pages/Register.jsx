@@ -1,6 +1,11 @@
 import styled from "styled-components";
 import { mobile } from "../responsive";
-
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { login } from "../redux/apiCalls";
+import { publicRequest } from "../requestMethods";
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
@@ -55,22 +60,53 @@ const Button = styled.button`
 `;
 
 const Register = () => {
+  let dispatch = useDispatch();
+    let navigate = useNavigate();
+    let [error, setError] = useState('');
+  const [user, setUser] = useState({ username: "one", email: "one@one.com", password: "123", confirmPassword: ""});
+  const change = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
+  const signup = async (e) => {
+
+    e.preventDefault();
+    if(user.password !== user.confirmPassword) {
+        setError('Passwords do not match');
+        return;
+    }
+    try {
+        setError('');
+        const session = await publicRequest.post('/auth/register', user);
+        console.log(session);
+        if (session) {
+            const userData = await publicRequest.post('/auth/login', { username: user.username,email:user.email, password: user.password });
+            if (userData) {
+              login(dispatch, { username:user.username, password:user.password});
+                navigate('/');
+                console.log("User has been created successfully");
+            }
+        }
+    }
+    catch (err) {
+        setError(err.message)
+    }
+}
   return (
     <Container>
       <Wrapper>
         <Title>CREATE AN ACCOUNT</Title>
         <Form>
-          <Input placeholder="name" />
+          <Input placeholder="name" name="name"/>
           <Input placeholder="last name" />
-          <Input placeholder="username" />
-          <Input placeholder="email" />
-          <Input placeholder="password" />
-          <Input placeholder="confirm password" />
+          <Input placeholder="username" onChange={change} name="username"/>
+          <Input placeholder="email" onChange={change} name="email" type="email"/>
+          <Input placeholder="password" onChange={change} name="password" type = "password"/>
+          <Input placeholder="confirm password" name="confirmPassword" onChange={change}/>
           <Agreement>
             By creating an account, I consent to the processing of my personal
             data in accordance with the <b>PRIVACY POLICY</b>
           </Agreement>
-          <Button>CREATE</Button>
+          <Button onClick={signup}>CREATE</Button>
         </Form>
       </Wrapper>
     </Container>

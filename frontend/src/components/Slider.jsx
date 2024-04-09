@@ -5,6 +5,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { sliderItems } from "../data";
 import { mobile } from "../responsive.js";
+import { useNavigate } from 'react-router-dom';
 const Container = styled.div`
   width: 100%;
   height: 100vh;
@@ -93,6 +94,7 @@ const Button = styled.button`
 `;
 const cntSliderItems = sliderItems.length;
 const Slider = () => {
+  const navigate = useNavigate();
   const [slideIndex, setSlideIndex] = useState(0);
   const handleClick = (direction) => {
     if (direction === "left") {
@@ -116,7 +118,9 @@ const Slider = () => {
             <InfoContainer>
               <Title>{item.title}</Title>
               <Desc>{item.desc}</Desc>
-              <Button>SHOW NOW</Button>
+              <Button onClick={() => {
+                navigate(`/products/${item.cat}`)
+              }}>SHOW NOW</Button>
             </InfoContainer>
           </Slide>
         ))}

@@ -13,7 +13,7 @@ const Container = styled.div`
 `;
 const Announcement = () => {
   return (
-     <Container>Sign Up and get 50% Off</Container>
+     <Container>Shop over $500 and get 50% Off</Container>
   )
 }
 

@@ -15,6 +15,7 @@ router.post("/register", async (req, res) => {
     const savedUser = await newUser.save();
     res.status(201).json(savedUser);
   } catch (err) {
+    console.log(err)
     res.status(500).json(err);
   }
 });
@@ -32,7 +33,9 @@ router.post("/login", async (req, res) => {
     const token = jwt.sign({ id: user._id, isAdmin: user.isAdmin }, process.env.SECRET_KEY, { expiresIn: "1d" });
     res.status(200).json({ ...others, token });
     } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json({
+      message: "Something went wrong",
+    });
     }
 }
 );

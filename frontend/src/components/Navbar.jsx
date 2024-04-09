@@ -6,7 +6,8 @@ import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link, NavLink } from "react-router-dom";
+import userRedux from '../redux/userRedux.js';
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
     right: -3,
@@ -92,7 +93,9 @@ text-decoration: none;
   ${mobile({ fontSize: "12px", marginLeft: "10px" })}
 `;
 const Navbar = () => {
-  const quantity = useSelector(state=>state.cart.quantity)
+  const quantity = useSelector(state=>state.cart.quantity);
+  const user = useSelector(state=>state.user);
+
   return (
     <Container>
       <Wrapper>
@@ -108,9 +111,9 @@ const Navbar = () => {
           <Logo>PIOR</Logo>
         </Center>
         <Right>
-          <MenuItem><StyledLink to='/register'>REGISTER</StyledLink></MenuItem>
-          <MenuItem><StyledLink to='/login'>SIGN IN</StyledLink></MenuItem>
-         
+          {user ? <MenuItem><StyledLink to='/'>HOME</StyledLink></MenuItem> : <MenuItem><StyledLink to='/register'>REGISTER</StyledLink></MenuItem>}
+          {user ? <MenuItem><StyledLink to='/logout'>LOGOUT</StyledLink></MenuItem> : <MenuItem><StyledLink to='/login'>SIGN IN</StyledLink></MenuItem>}
+         {console.log(user)}
           <MenuItem>
           <StyledLink to='/cart'>
           <IconButton aria-label="cart">
