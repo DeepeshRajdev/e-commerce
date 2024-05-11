@@ -190,8 +190,8 @@ const Cart = () => {
         <Top>
           <TopButton onClick={() => navigate('/')}>CONTINUE SHOPPING</TopButton>
           <TopTexts>
-            <TopText>Shopping Bag(2)</TopText>
-            <TopText>Your Wishlist (0)</TopText>
+            <TopText>Shopping Bag</TopText>
+            <TopText>Your Wishlist</TopText>
           </TopTexts>
           <TopButton type="filled">CHECKOUT NOW</TopButton>
         </Top>
