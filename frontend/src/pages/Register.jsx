@@ -4,8 +4,8 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { login } from "../redux/apiCalls";
-import { publicRequest } from "../requestMethods";
+import { login } from "../redux/apiCalls.js";
+import { publicRequest } from "../requestMethods.js";
 const Container = styled.div`
   width: 100vw;
   height: 100vh;

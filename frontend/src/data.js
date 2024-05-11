@@ -65,8 +65,12 @@ export const categories = [
 
 export const popularProducts = [
   {
-    id:1,
-    img:"https://d3o2e4jr3mxnm3.cloudfront.net/Mens-Jake-Guitar-Vintage-Crusher-Tee_68382_1_lg.png",
+    "title": "Black Shirt", "des": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc.", "img": "https://images.unsplash.com/photo-1606115757624-6b9bfe9fa5e4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGJsYWNrJTIwc2hpcnR8ZW58MHx8MHx8fDA%3D","price": 30.99,"size": ["S", "M", "L", "XL"],"color": ["black","yellow","red"],"categories": ["women", "tshirts"],
+  },
+  {
+    
+      "title": "Black Jacket", "des": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc.", "img":"https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzF8fGZhc2hpb258ZW58MHx8MHx8fDA%3D","price": 30.99,"size": ["S", "M", "L", "XL"],"color": ["black","yellow","red"],"categories": ["jackets", "women"],
+    
   },
   {
     id:2,

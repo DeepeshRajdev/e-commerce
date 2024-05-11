@@ -25,6 +25,7 @@ const Info = styled.div`
 const Container = styled.div`
   flex: 1;
   margin: 5px;
+  padding: 5px;
   min-width: 280px;
   height: 350px;
   display: flex;
@@ -39,8 +40,10 @@ const Container = styled.div`
 `;
 
 const Image = styled.img`
-  height: 75%;
+  height: 100%;
+  width: 100%;
   z-index: 2;
+  object-fit: contain;
 `;
 
 const Icon = styled.div`
@@ -62,20 +65,22 @@ const Icon = styled.div`
 const Product = ({ item }) => {
   return (
     <Container>
+     
       <Image src={item.img} />
+     
       <Info>
-        <Icon>
+        {/* <Icon>
           <ShoppingCartIcon />
-        </Icon>
+        </Icon> */}
         <Icon>
-         <Link to={`/product/${item._id}`}>
+        <Link to={`/product/${item._id}`}>
           <SearchIcon />
-         </Link>
+          </Link>
         </Icon>
-        <Icon>
-          <FavoriteBorderIcon />
-        </Icon>
+        {/* <Icon> <FavoriteBorderIcon />
+        </Icon> */}
       </Info>
+      
     </Container>
   );
 };

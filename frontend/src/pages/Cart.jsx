@@ -5,7 +5,7 @@ import styled from "styled-components";
 import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import { mobile } from "../responsive";
+import { mobile } from "../responsive.js";
 import StripeCheckout from "react-stripe-checkout";
 import { useEffect, useState } from "react";
 import { userRequest } from "../requestMethods.js";
@@ -162,7 +162,7 @@ const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const [stripeToken, setStripeToken] = useState(null);
   const navigate = useNavigate();
-  const KEY = pk_test_51P33fNSFNo22sPcPz9C6kqBqlunAPIYDkoFvxFc7pZKQvQrLUYEgtyUmtcGiRSArK5ybhZ7r0y1os9wbwUh9rfHE00nhWAvGxE;
+  const KEY = import.meta.env.VITE_STRIPE_KEY;
   const onToken = (token) => {
     setStripeToken(token);
   };
@@ -188,7 +188,7 @@ const Cart = () => {
       <Wrapper>
         <Title>YOUR BAG</Title>
         <Top>
-          <TopButton>CONTINUE SHOPPING</TopButton>
+          <TopButton onClick={() => navigate('/')}>CONTINUE SHOPPING</TopButton>
           <TopTexts>
             <TopText>Shopping Bag(2)</TopText>
             <TopText>Your Wishlist (0)</TopText>
