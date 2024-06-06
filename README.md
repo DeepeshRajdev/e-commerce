@@ -1,4 +1,4 @@
-# eCommerce Project
+# PIOR | eCommerce Project
 
 Welcome to our eCommerce project built with the MERN stack! This application allows users to browse, filter, and purchase products, leveraging Stripe for secure payment processing and JWT for user authentication.
 
